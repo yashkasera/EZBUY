@@ -2,7 +2,7 @@
 
 **Our core idea is to allow users  to buy what they are looking for at the cheapest price  possible by comparing various different e-commerce sites**
 
-**Website Link :** [Click Here](https://yashkasera.github.io/ezbuy.github.io/)
+**The site is hosted locally for now
 
 **Presentation Link :** [Click Here](https://prezi.com/view/HHY6bHpjUp8fRbOcdBbG)
 
