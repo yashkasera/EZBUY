@@ -53,9 +53,12 @@
                 </div>
             </div>
         </div>
-            <div class="row content" style="margin: 50px;">
 
-            </div>
+        <br>
+        <button class="sort">Sort</button>
+        <div class="row content" style="margin: 50px;">
+
+        </div>
 
         <div class="brands"><a class="bg-light" href="#" style="margin-top: 100px;"> <img src="assets/img/flipkart.png"
                     style="height: 30px;"><img src="assets/img/amazon.png" style="height: 20px;"><img
@@ -71,7 +74,7 @@
     <script src="assets/js/agency.js"></script>
 
     <script>
-        $('.form').submit(function(e){
+        $('.form').submit(function (e) {
             e.preventDefault();
             $('.content').empty()
             var requestOptions = {
@@ -83,7 +86,7 @@
                     "product": $('.productName').val()
                 })
             }
-            var url = 'http://127.0.0.1:5500'
+            var url = 'http://127.0.0.1:5000/'
 
             fetch(url, requestOptions)
                 .then(data => { return data.json() })
@@ -95,15 +98,15 @@
 
                         products.push({
                             name: res.Amazon.PRODUCT[i],
-                            image: "",
+                            image: "assets/img/amazon.png",
                             link: res.Amazon.URL[i],
-                            rating: "",
+                            rating: 3.5,
                             price: res.Amazon.PRICE[i]
                         })
 
                         products.push({
                             name: res.Flipkart.PRODUCT[i],
-                            image: "",
+                            image: "assets/img/flipkart.png",
                             link: res.Flipkart.URL[i],
                             rating: res.Flipkart.RATINGS[i],
                             price: res.Flipkart.PRICE[i]
@@ -112,30 +115,31 @@
                     }
 
                     for (let i = 0; i < products.length; i++) {
-    //                     `
-     //                   <div>
-    //                     <div class="name">`+ products[i].name + `</div>
-    //                        <div class="rating">`+ products[i].rating + `</div>
-     //                       <div class="price">`+ products[i].price + `</div>
-      //                      <a href="`+ products[i].link + `"><button> Buy Now </button></a>
-       //                 </div>`
-                        var rat=`<ul class="list-inline">`;
-                        for(var j=1;j<=5;j++){
-                            if(j<product[i].rating)
-                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>`;
+                        //                     `
+                        //                   <div>
+                        //                     <div class="name">`+ products[i].name + `</div>
+                        //                        <div class="rating">`+ products[i].rating + `</div>
+                        //                       <div class="price">`+ products[i].price + `</div>
+                        //                      <a href="`+ products[i].link + `"><button> Buy Now </button></a>
+                        //                 </div>`
+                        var rat = `<ul class="list-inline">`;
+                        for (var j = 1; j <= 5; j++) {
+                            if (j < products[i].rating)
+                                rat += `<li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>`;
                             else
-                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>`;
+                                rat += `<li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>`;
                         }
-                        rat+=`</ul>`;
+                        rat += `</ul>`;
+
                         $('.content').append(
-                        
-                        `
+
+                            `
                         <div class="col-sm-12 col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-12"><img src="assets/img/amazon.png" style="height: 40px;" /></div>
+                                <div class="col-md-12"><img src=${products[i].image} style="height: 40px;" /></div>
                             </div>
                             <div class="row" style="margin-top: 13px;margin-right: 0px;margin-left: 0px;">
                                 <div class="col"><img src="https://via.placeholder.com/150" width="auto" /></div>
@@ -153,10 +157,12 @@
                 </div>
             </div>
                         `
-                        
+
                         )
 
                     }
+
+                    $('.sort').css("visibility", "initial")
 
                 })
 
@@ -188,15 +194,15 @@
 
                         products.push({
                             name: res.Amazon.PRODUCT[i],
-                            image: "",
+                            image: "assets/img/amazon.png",
                             link: res.Amazon.URL[i],
-                            rating: "",
+                            rating: 3.5,
                             price: res.Amazon.PRICE[i]
                         })
 
                         products.push({
                             name: res.Flipkart.PRODUCT[i],
-                            image: "",
+                            image: "assets/img/flipkart.png",
                             link: res.Flipkart.URL[i],
                             rating: res.Flipkart.RATINGS[i],
                             price: res.Flipkart.PRICE[i]
@@ -223,12 +229,12 @@
 
                     for (let i = 0; i < products.length; i++) {
 
-                        var rat=`<ul class="list-inline">`;
-                        for(var j=1;j<=5;j++){
-                            if(j<product[i].rating)
-                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>`;
+                        var rat = `<ul class="list-inline">`;
+                        for (var j = 1; j <= 5; j++) {
+                            if (j < products[i].rating)
+                                rat += `<li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>`;
                             else
-                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>`;
+                                rat += `<li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>`;
                         }
                         $('.content').append(`
                         <div class="col-sm-12 col-md-6">
@@ -236,7 +242,7 @@
                     <div class="card-body">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-md-12"><img src="assets/img/amazon.png" style="height: 40px;" /></div>
+                                <div class="col-md-12"><img src=${products[i].image} style="height: 40px;" /></div>
                             </div>
                             <div class="row" style="margin-top: 13px;margin-right: 0px;margin-left: 0px;">
                                 <div class="col"><img src="https://via.placeholder.com/150" width="auto" /></div>
@@ -256,6 +262,8 @@
                         `)
 
                     }
+
+                    $('.sort').css("visibility", "initial")
 
                 })
 
