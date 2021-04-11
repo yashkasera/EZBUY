@@ -223,6 +223,13 @@
 
                     for (let i = 0; i < products.length; i++) {
 
+                        var rat=`<ul class="list-inline">`;
+                        for(var j=1;j<=5;j++){
+                            if(j<product[i].rating)
+                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>`;
+                            else
+                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>`;
+                        }
                         $('.content').append(`
                         <div class="col-sm-12 col-md-6">
                 <div class="card">
@@ -236,13 +243,7 @@
                                 <div class="col">
                                     <h6 class="text-muted mb-2">${products[i].name}</h6>
                                     <h4>Rs. ${products[i].price}</h4>
-                                    <ul class="list-inline">
-                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
-                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
-                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
-                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
-                                <li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>
-                                </ul>
+                                    ${rat}
                                     <a href=${products[i].link}><button class="btn btn-primary" type="button">View Deal</button></a>
                                 </div>
                             </div>
