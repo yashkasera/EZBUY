@@ -6,6 +6,8 @@
 
 **Presentation Link :** [Click Here](https://prezi.com/view/HHY6bHpjUp8fRbOcdBbG)
 
+**Video Link :** [Click Here](https://drive.google.com/drive/folders/19GVTNZqyIqnUimdsJTs_XesEnhHz8LrS?usp=sharing)
+
 We are team "Absolute Zero". 
 We are team of tech enthusiasts and we aim to solve the problems we face in our daily lives.
 
