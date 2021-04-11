@@ -41,7 +41,7 @@
                 <div class="col-md-6 text-left order-sm-2 order-md-1 order-lg-1 order-xl-1">
                     <h1 data-aos="fade">WELCOME TO EZBUY</h1><span data-aos="fade" style="font-size: 25px;">Compare
                         product prices and make your decisions easily.</span>
-                    <form data-aos="fade">
+                    <form data-aos="fade" class="form">
                         <div class="form-row">
                             <div class="col"><input class="border rounded-pill form-control productName" type="text"
                                     placeholder="Search" style="margin-top: 10px;margin-bottom: 13px;"></div>
@@ -53,6 +53,10 @@
                 </div>
             </div>
         </div>
+            <div class="row content" style="margin: 50px;">
+
+            </div>
+
         <div class="brands"><a class="bg-light" href="#" style="margin-top: 100px;"> <img src="assets/img/flipkart.png"
                     style="height: 30px;"><img src="assets/img/amazon.png" style="height: 20px;"><img
                     src="assets/img/samsung.png" style="height: 20px;"><img src="assets/img/zara.png"
@@ -67,11 +71,9 @@
     <script src="assets/js/agency.js"></script>
 
     <script>
-
-        $('.search').click(() => {
-
+        $('.form').submit(function(e){
+            e.preventDefault();
             $('.content').empty()
-
             var requestOptions = {
                 method: "POST",
                 headers: {
@@ -81,8 +83,7 @@
                     "product": $('.productName').val()
                 })
             }
-
-            var url = 'http://127.0.0.1:5000/'
+            var url = 'http://127.0.0.1:5500'
 
             fetch(url, requestOptions)
                 .then(data => { return data.json() })
@@ -111,14 +112,49 @@
                     }
 
                     for (let i = 0; i < products.length; i++) {
-
-                        $('.content').append(`
-                        <div>
-                            <div class="name">`+ products[i].name + `</div>
-                            <div class="rating">`+ products[i].rating + `</div>
-                            <div class="price">`+ products[i].price + `</div>
-                            <a href="`+ products[i].link + `"><button> Buy Now </button></a>
-                        </div>`)
+    //                     `
+     //                   <div>
+    //                     <div class="name">`+ products[i].name + `</div>
+    //                        <div class="rating">`+ products[i].rating + `</div>
+     //                       <div class="price">`+ products[i].price + `</div>
+      //                      <a href="`+ products[i].link + `"><button> Buy Now </button></a>
+       //                 </div>`
+                        var rat=`<ul class="list-inline">`;
+                        for(var j=1;j<=5;j++){
+                            if(j<product[i].rating)
+                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>`;
+                            else
+                                rat+=`<li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>`;
+                        }
+                        rat+=`</ul>`;
+                        $('.content').append(
+                        
+                        `
+                        <div class="col-sm-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12"><img src="assets/img/amazon.png" style="height: 40px;" /></div>
+                            </div>
+                            <div class="row" style="margin-top: 13px;margin-right: 0px;margin-left: 0px;">
+                                <div class="col"><img src="https://via.placeholder.com/150" width="auto" /></div>
+                                <div class="col">
+                                    <h6 class="text-muted mb-2">${products[i].name}</h6>
+                                    <h4>Rs. ${products[i].price}</h4>
+                                    ${rat}
+                                    <a href=${products[i].link}><button class="btn btn-primary" type="button">View Deal</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 style="margin-top: 22px;">Customer Reviews</h4>
+                        <p>Super comfortable.<br />These sound amazing.<br /></p>
+                    </div>
+                </div>
+            </div>
+                        `
+                        
+                        )
 
                     }
 
@@ -188,12 +224,35 @@
                     for (let i = 0; i < products.length; i++) {
 
                         $('.content').append(`
-                        <div>
-                            <div class="name">`+ products[i].name + `</div>
-                            <div class="rating">`+ products[i].rating + `</div>
-                            <div class="price">`+ products[i].price + `</div>
-                            <a href="`+ products[i].link + `"><button> Buy Now </button></a>
-                        </div>`)
+                        <div class="col-sm-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12"><img src="assets/img/amazon.png" style="height: 40px;" /></div>
+                            </div>
+                            <div class="row" style="margin-top: 13px;margin-right: 0px;margin-left: 0px;">
+                                <div class="col"><img src="https://via.placeholder.com/150" width="auto" /></div>
+                                <div class="col">
+                                    <h6 class="text-muted mb-2">${products[i].name}</h6>
+                                    <h4>Rs. ${products[i].price}</h4>
+                                    <ul class="list-inline">
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star text-primary"></i></li>
+                                <li class="list-inline-item m-0"><i class="fa fa-star-o text-primary"></i></li>
+                                </ul>
+                                    <a href=${products[i].link}><button class="btn btn-primary" type="button">View Deal</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 style="margin-top: 22px;">Customer Reviews</h4>
+                        <p>Super comfortable.<br />These sound amazing.<br /></p>
+                    </div>
+                </div>
+            </div>
+                        `)
 
                     }
 

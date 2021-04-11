@@ -121,7 +121,8 @@ def main2(search_term2):
 def home():
     dicta={}
     data=request.json
-    product=data['product']
+    #product=data['productName']
+    product="skullcandy"
     driver=webdriver.Edge(r'C:\WorkSoftwares\WebDriver\msedgedriverr.exe')
     dicta=main(product,driver)
     dictf=main2(product) 
